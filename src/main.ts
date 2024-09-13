@@ -13,9 +13,19 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
+      
+      //hace la conversion implicita de los queryParameters segun en DTO que se defina
+      transform:true,
+      transformOptions:{
+        enableImplicitConversion:true
+      }
+
     })
   );
 
-  await app.listen(3000);
+  //await app.listen(3000);
+  await app.listen(process.env.PORT);
+  console.log(`App running on Port ${process.env.PORT}`);
+  
 }
 bootstrap();
